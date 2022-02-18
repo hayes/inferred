@@ -23,7 +23,7 @@ interface Directive
   > {}
 
 interface Arguments extends Block<{}, Argument> {
-  end: `)`;
+  end: ')';
   start: '(';
   separator: ',';
 }
@@ -54,7 +54,7 @@ interface BlockCommentSyntax
   extends SyntaxNode<'BlockComment', [{ name: 'body'; kind: Group<'"""', '"""'> }]> {}
 
 interface FieldArguments extends Block<{}, InputFieldDefinition> {
-  end: `)`;
+  end: ')';
   start: '(';
   separator: ',';
 }
@@ -119,7 +119,7 @@ interface QueryBody
     },
     FieldSelection
   > {
-  end: `}`;
+  end: '}';
   start: '{';
 }
 
