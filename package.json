@@ -9,7 +9,7 @@
     "preinstall": "npx only-allow pnpm",
     "prepare": "pnpm create-config && pnpm run -r generate --filter @inferred/*",
     "create-config": "beemo create-config",
-    "build": "pnpm turbo run build --scope='@inferred/*' && pnpm run build-deno && pnpm run -r generate --filter @inferred-examples/*",
+    "build": "pnpm turbo run build --scope='@inferred/*' && pnpm run -r generate --filter @inferred-examples/*",
     "clean:all": "pnpm clean && rm -rf ./packages/*/node_modules node_modules ./packages/deno/packages && pnpm",
     "clean": "rm -rf ./packages/*/{tsconfig.tsbuildinfo,lib,esm} && git checkout -- 'packages/*/esm/*'",
     "ci": "pnpm turbo run build test --concurrency=4 --scope='@inferred/*' && pnpm run type && pnpm run lint:ci",

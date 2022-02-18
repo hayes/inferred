@@ -1,0 +1,60 @@
+interface Animal {
+  diet: Diet!
+}
+
+scalar Date
+
+enum Diet {
+  CARNIVOROUS
+  HERBIVOROUS
+  OMNIVORIOUS
+}
+
+type Giraffe implements Animal {
+  age: Int!
+  diet: Diet!
+  height(unit: LengthUnit! = Meters): Float!
+  name: String!
+  species: GiraffeSpecies!
+  friends: [Giraffe]
+}
+
+union GiraffeFact = GiraffeNumericFact | GiraffeStringFact
+
+input GiraffeInput {
+  birthdate: String!
+  height: Float!
+  name: String!
+}
+
+type GiraffeNumericFact {
+  fact: String!
+  value: Float!
+}
+
+enum GiraffeSpecies {
+  Masai
+  Northern
+  Reticulated
+  Southern
+}
+
+type GiraffeStringFact {
+  fact: String!
+}
+
+enum LengthUnit {
+  Feet
+  Meters
+}
+
+type Mutation {
+  createGiraffe(input: GiraffeInput!): Giraffe!
+}
+
+type Query {
+  animal: Animal!
+  date: Date!
+  giraffe: Giraffe!
+  giraffeFacts: [GiraffeFact!]!
+}
