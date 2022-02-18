@@ -1,0 +1,59 @@
+name: Changesets
+
+on:
+  push:
+    branches:
+      - main
+env:
+  CI: true
+
+jobs:
+  version:
+    timeout-minutes: 15
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout code repository
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      
+      - name: setup node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 14
+
+      - name: Cache pnpm modules
+        uses: actions/cache@v2
+        with:
+          path: ~/.pnpm-store
+          key: ${{ runner.os }}-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-
+
+      - uses: pnpm/action-setup@v2.0.1
+        with:
+          version: 6.29.1
+    
+      - name: install dependencies
+        run: pnpm install
+      
+      - name: Creating .npmrc
+        run: |
+          cat << EOF > "$HOME/.npmrc"
+            email=michael@hayes.io
+            //registry.npmjs.org/:_authToken=$NPM_TOKEN
+          EOF
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+      
+      - name: Create PR or Publish release
+        id: changesets
+        uses: changesets/action@v1
+        with:
+          version: pnpm ci:version
+          commit: 'chore: update versions'
+          title: 'chore: update versions'
+          publish: pnpm release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}

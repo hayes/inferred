@@ -1,0 +1,33 @@
+{
+  "name": "@inferred/parser",
+  "version": "0.0.0",
+  "description": "Parser for inferring types from strings",
+  "main": "./lib/index.js",
+  "types": "./lib/index.d.ts",
+  "module": "./esm/index.js",
+  "exports": {
+    "import": "./esm/index.js",
+    "require": "./lib/index.js"
+  },
+  "scripts": {
+    "type": "tsc --noEmit",
+    "build": "pnpm build:cjs && pnpm build:esm",
+    "build:cjs": "tsc --module commonjs --outDir lib",
+    "build:esm": "tsc --module es2020 --outDir esm && pnpm esm:extensions",
+    "esm:extensions": "ts-node --compiler-options \"{\\\"module\\\":\\\"commonjs\\\"}\" ../../.config/esm-transformer.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hayes/pothos.git"
+  },
+  "author": "Michael Hayes",
+  "license": "ISC",
+  "keywords": [],
+  "publishConfig": {
+    "access": "public"
+  },
+  "peerDependencies": {
+    "graphql": ">=15.1.0"
+  },
+  "devDependencies": {}
+}

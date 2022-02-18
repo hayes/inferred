@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json.schemastore.org/package.json",
+  "version": "0.0.0",
+  "name": "@inferred-examples/typed-document-example",
+  "private": true,
+  "main": "src/index.ts",
+  "types": "src/index.ts",
+  "scripts": {
+    "start": "ts-node --transpile-only src/server.ts",
+    "type": "tsc --noEmit"
+  },
+  "dependencies": {
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
