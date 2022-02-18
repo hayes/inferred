@@ -63,8 +63,11 @@ importers:
       '@graphql-codegen/cli': ^2.6.2
       '@graphql-codegen/typescript': ^2.4.5
       '@graphql-codegen/typescript-resolvers': ^2.5.2
+      '@graphql-typed-document-node/core': ^3.1.1
       '@inferred/parser': ^0.0.0
       graphql: 16.3.0
+    dependencies:
+      '@graphql-typed-document-node/core': 3.1.1_graphql@16.3.0
     devDependencies:
       '@graphql-codegen/cli': 2.6.2_271ee7ca79445f38d53e501cf47bccb5
       '@graphql-codegen/typescript': 2.4.5_graphql@16.3.0
@@ -2525,6 +2528,14 @@ packages:
       tslib: 2.3.1
       value-or-promise: 1.0.11
     dev: true
+
+  /@graphql-typed-document-node/core/3.1.1_graphql@16.3.0:
+    resolution: {integrity: sha512-NQ17ii0rK1b34VZonlmT2QMJFI70m0TRwbknO/ihlbatXyaktDhN/98vBiUU6kNBPljqGqyIrl2T4nY2RpFANg==}
+    peerDependencies:
+      graphql: ^0.8.0 || ^0.9.0 || ^0.10.0 || ^0.11.0 || ^0.12.0 || ^0.13.0 || ^14.0.0 || ^15.0.0 || ^16.0.0
+    dependencies:
+      graphql: 16.3.0
+    dev: false
 
   /@humanwhocodes/config-array/0.9.3:
     resolution: {integrity: sha512-3xSMlXHh03hCcCmFc0rbKp3Ivt2PFEJnQUJDDMTJQ2wkECZWdq4GePs2ctc5H8zV+cHPaq8k2vU8mrQjA6iHdQ==}

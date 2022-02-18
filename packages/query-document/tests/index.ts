@@ -1,9 +1,9 @@
-import { ParseNode } from '@inferred/parser';
-import { GetOperation, MapSelections } from '../src';
-import { QueryBlock } from '../src/grammar';
+import { parser } from '../src';
 import { Query } from './generated/types.generated';
 
-const query = /* graphql */ `
+const parseQuery = parser<Query>();
+
+export const query = parseQuery(/* graphql */ `
     query queryGiraffes {
         giraffe {
             foodPreference: diet
@@ -18,14 +18,6 @@ const query = /* graphql */ `
         name
         height
     }
-` as const;
+`);
 
-function parse<T extends string>(
-  q: T,
-): ParseNode<T, QueryBlock> extends { node: (infer Nodes)[] } ? GetOperation<Nodes> : never {
-  throw new Error('Not implemented');
-}
-
-export const parsed = parse(query);
-
-export type Test = MapSelections<Query, typeof parsed['selection']>;
+console.log(query);
